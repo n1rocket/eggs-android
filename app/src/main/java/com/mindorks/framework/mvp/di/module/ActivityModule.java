@@ -102,6 +102,7 @@ public class ActivityModule {
         return new LinearLayoutManager(activity);
     }
 
+    //Splash
     @Provides
     @PerActivity
     SplashMvpPresenter<SplashMvpView, SplashMvpInteractor> provideSplashPresenter(
@@ -115,6 +116,7 @@ public class ActivityModule {
         return interactor;
     }
 
+    //Login
     @Provides
     @PerActivity
     LoginMvpPresenter<LoginMvpView, LoginMvpInteractor> provideLoginPresenter(
@@ -128,6 +130,7 @@ public class ActivityModule {
         return interactor;
     }
 
+    //Main
     @Provides
     @PerActivity
     MainMvpInteractor provideMainMvpInteractor(MainInteractor interactor) {
@@ -145,6 +148,7 @@ public class ActivityModule {
         return new MainPagerAdapter(activity.getSupportFragmentManager());
     }
 
+    //Profile
     @Provides
     ProfileMvpPresenter<ProfileMvpView, ProfileMvpInteractor> provideProfilePresenter(
             ProfilePresenter<ProfileMvpView, ProfileMvpInteractor> presenter) {
@@ -157,7 +161,7 @@ public class ActivityModule {
         return interactor;
     }
 
-
+    //Info
     @Provides
     InfoMvpPresenter<InfoMvpView, InfoMvpInteractor> provideInfoPresenter(
             InfoPresenter<InfoMvpView, InfoMvpInteractor> presenter) {
@@ -170,6 +174,7 @@ public class ActivityModule {
         return interactor;
     }
 
+    //Sentences
     @Provides
     SentencesMvpPresenter<SentencesMvpView, SentencesMvpInteractor> provideSentencesMvpPresenter(
             SentencesPresenter<SentencesMvpView, SentencesMvpInteractor> presenter) {

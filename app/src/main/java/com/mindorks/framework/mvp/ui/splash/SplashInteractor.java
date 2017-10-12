@@ -48,77 +48,17 @@ import io.reactivex.functions.Function;
 public class SplashInteractor extends BaseInteractor
         implements SplashMvpInteractor {
 
-    private QuestionRepository mQuestionRepository;
-    private OptionRepository mOptionRepository;
     private Context mContext;
 
     @Inject
     public SplashInteractor(@ApplicationContext Context context,
                             PreferencesHelper preferencesHelper,
-                            ApiHelper apiHelper,
-                            QuestionRepository questionRepository,
-                            OptionRepository optionRepository) {
+                            ApiHelper apiHelper) {
 
         super(preferencesHelper, apiHelper);
         mContext = context;
-        mQuestionRepository = questionRepository;
-        mOptionRepository = optionRepository;
     }
 
-    @Override
-    public Observable<Boolean> seedDatabaseQuestions() {
-
-        GsonBuilder builder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation();
-        final Gson gson = builder.create();
-
-        return mQuestionRepository.isQuestionEmpty()
-                .concatMap(new Function<Boolean, ObservableSource<? extends Boolean>>() {
-                    @Override
-                    public ObservableSource<? extends Boolean> apply(Boolean isEmpty)
-                            throws Exception {
-                        if (isEmpty) {
-                            Type type = $Gson$Types.newParameterizedTypeWithOwner(
-                                    null,
-                                    List.class,
-                                    Question.class);
-                            List<Question> questionList = gson.fromJson(
-                                    FileUtils.loadJSONFromAsset(
-                                            mContext,
-                                            AppConstants.SEED_DATABASE_QUESTIONS),
-                                    type);
-
-                            return mQuestionRepository.saveQuestionList(questionList);
-                        }
-                        return Observable.just(false);
-                    }
-                });
-    }
-
-    @Override
-    public Observable<Boolean> seedDatabaseOptions() {
-
-        GsonBuilder builder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation();
-        final Gson gson = builder.create();
-
-        return mOptionRepository.isOptionEmpty()
-                .concatMap(new Function<Boolean, ObservableSource<? extends Boolean>>() {
-                    @Override
-                    public ObservableSource<? extends Boolean> apply(Boolean isEmpty)
-                            throws Exception {
-                        if (isEmpty) {
-                            Type type = new TypeToken<List<Option>>() {
-                            }.getType();
-                            List<Option> optionList = gson.fromJson(
-                                    FileUtils.loadJSONFromAsset(
-                                            mContext,
-                                            AppConstants.SEED_DATABASE_OPTIONS),
-                                    type);
-                            return mOptionRepository.saveOptionList(optionList);
-                        }
-                        return Observable.just(false);
-                    }
-                });
-    }
 
     @Override
     public int getCurrentUserLoggedInMode() {

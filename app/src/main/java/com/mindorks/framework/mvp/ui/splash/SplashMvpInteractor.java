@@ -24,10 +24,5 @@ import io.reactivex.Observable;
  */
 
 public interface SplashMvpInteractor extends MvpInteractor {
-
-    Observable<Boolean> seedDatabaseQuestions();
-
-    Observable<Boolean> seedDatabaseOptions();
-
     int getCurrentUserLoggedInMode();
 }

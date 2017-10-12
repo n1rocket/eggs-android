@@ -41,11 +41,13 @@ public class ProfilePresenter<V extends ProfileMvpView,
     @Override
     public void onSectionAClicked() {
         //getMvpView().openMainActivity();
+        getMvpView().showMessage("onSectionAClicked");
         AppLogger.d("-----> onSectionAClicked");
     }
 
     @Override
     public void onSectionBClicked() {
+        getMvpView().showMessage("onSectionBClicked");
         AppLogger.d("-----> onSectionBClicked");
 
     }

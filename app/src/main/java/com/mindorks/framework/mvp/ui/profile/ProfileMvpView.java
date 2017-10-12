@@ -22,5 +22,4 @@ import com.mindorks.framework.mvp.ui.base.MvpView;
  */
 
 public interface ProfileMvpView extends MvpView {
-
 }

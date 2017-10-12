@@ -47,35 +47,7 @@ public class SplashPresenter<V extends SplashMvpView, I extends SplashMvpInterac
 
         getMvpView().startSyncService();
 
-        getCompositeDisposable().add(getInteractor()
-                .seedDatabaseQuestions()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .concatMap(new Function<Boolean, ObservableSource<Boolean>>() {
-                    @Override
-                    public ObservableSource<Boolean> apply(Boolean aBoolean) throws Exception {
-                        return getInteractor().seedDatabaseOptions();
-                    }
-                })
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-                        decideNextActivity();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-                        getMvpView().onError(R.string.some_error);
-                        decideNextActivity();
-                    }
-                }));
-
+        decideNextActivity();
 
     }
 
