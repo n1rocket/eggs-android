@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mindorks.framework.mvp.R;
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
 import com.mindorks.framework.mvp.ui.base.BaseFragment;
 
 import javax.inject.Inject;
@@ -55,12 +54,8 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        ActivityComponent component = getActivityComponent();
-        if (component != null) {
-            component.inject(this);
-            setUnBinder(ButterKnife.bind(this, view));
-            mPresenter.onAttach(this);
-        }
+        setUnBinder(ButterKnife.bind(this, view));
+        mPresenter.onAttach(this);
 
         return view;
     }

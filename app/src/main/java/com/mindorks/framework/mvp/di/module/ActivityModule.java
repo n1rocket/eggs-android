@@ -87,66 +87,7 @@ public class ActivityModule {
         return mActivity;
     }
 
-    @Provides
-    CompositeDisposable provideCompositeDisposable() {
-        return new CompositeDisposable();
-    }
 
-    @Provides
-    SchedulerProvider provideSchedulerProvider() {
-        return new AppSchedulerProvider();
-    }
-
-    @Provides
-    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
-        return new LinearLayoutManager(activity);
-    }
-
-    //Splash
-    @Provides
-    @PerActivity
-    SplashMvpPresenter<SplashMvpView, SplashMvpInteractor> provideSplashPresenter(
-            SplashPresenter<SplashMvpView, SplashMvpInteractor> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    @PerActivity
-    SplashMvpInteractor provideSplashMvpInteractor(SplashInteractor interactor) {
-        return interactor;
-    }
-
-    //Login
-    @Provides
-    @PerActivity
-    LoginMvpPresenter<LoginMvpView, LoginMvpInteractor> provideLoginPresenter(
-            LoginPresenter<LoginMvpView, LoginMvpInteractor> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    @PerActivity
-    LoginMvpInteractor provideLoginMvpInteractor(LoginInteractor interactor) {
-        return interactor;
-    }
-
-    //Main
-    @Provides
-    @PerActivity
-    MainMvpInteractor provideMainMvpInteractor(MainInteractor interactor) {
-        return interactor;
-    }
-
-    @Provides
-    MainMvpPresenter<MainMvpView, MainMvpInteractor> provideMainPresenter(
-            MainPresenter<MainMvpView, MainMvpInteractor> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    MainPagerAdapter provideMainPagerAdapter(AppCompatActivity activity) {
-        return new MainPagerAdapter(activity.getSupportFragmentManager());
-    }
 
     //Profile
     @Provides

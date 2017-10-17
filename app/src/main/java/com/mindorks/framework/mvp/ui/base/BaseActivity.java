@@ -31,11 +31,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mindorks.framework.mvp.MvpApp;
 import com.mindorks.framework.mvp.R;
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
-import com.mindorks.framework.mvp.di.component.DaggerActivityComponent;
-import com.mindorks.framework.mvp.di.module.ActivityModule;
 import com.mindorks.framework.mvp.ui.login.LoginActivity;
 import com.mindorks.framework.mvp.utils.CommonUtils;
 import com.mindorks.framework.mvp.utils.NetworkUtils;
@@ -52,21 +48,11 @@ public abstract class BaseActivity extends AppCompatActivity
 
     private ProgressDialog mProgressDialog;
 
-    private ActivityComponent mActivityComponent;
-
     private Unbinder mUnBinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivityComponent = DaggerActivityComponent.builder()
-                .activityModule(new ActivityModule(this))
-                .applicationComponent(((MvpApp) getApplication()).getComponent())
-                .build();
-    }
-
-    public ActivityComponent getActivityComponent() {
-        return mActivityComponent;
     }
 
     @Override

@@ -22,30 +22,36 @@ import com.mindorks.framework.mvp.MvpApp;
 import com.mindorks.framework.mvp.data.db.model.DaoSession;
 import com.mindorks.framework.mvp.data.network.ApiHelper;
 import com.mindorks.framework.mvp.data.prefs.PreferencesHelper;
+import com.mindorks.framework.mvp.di.ActivityBuilder;
 import com.mindorks.framework.mvp.di.ApplicationContext;
-import com.mindorks.framework.mvp.di.module.ApplicationModule;
+import com.mindorks.framework.mvp.di.module.AppModule;
 import com.mindorks.framework.mvp.service.SyncService;
 
-import javax.inject.Singleton;
-
+import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 
 /**
  * Created by n1rocketdev on 27/01/17.
  */
 
-@Singleton
-@Component(modules = ApplicationModule.class)
-public interface ApplicationComponent {
+@Component(modules = {
+        AndroidInjectionModule.class,
+        AppModule.class,
+        ActivityBuilder.class})
+public interface AppComponent {
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(Application application);
+
+        AppComponent build();
+    }
 
     void inject(MvpApp app);
 
     void inject(SyncService service);
-
-    @ApplicationContext
-    Context context();
-
-    Application application();
 
     PreferencesHelper preferencesHelper();
 

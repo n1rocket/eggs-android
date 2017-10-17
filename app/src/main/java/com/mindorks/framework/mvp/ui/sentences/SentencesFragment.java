@@ -26,7 +26,6 @@ import android.view.ViewGroup;
 
 import com.mindorks.framework.mvp.R;
 import com.mindorks.framework.mvp.data.network.model.BlogResponse;
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
 import com.mindorks.framework.mvp.ui.base.BaseFragment;
 
 import java.util.List;
@@ -70,13 +69,10 @@ public class SentencesFragment extends BaseFragment implements
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sentences, container, false);
 
-        ActivityComponent component = getActivityComponent();
-        if (component != null) {
-            component.inject(this);
-            setUnBinder(ButterKnife.bind(this, view));
-            mPresenter.onAttach(this);
-            mSentencesAdapter.setCallback(this);
-        }
+        setUnBinder(ButterKnife.bind(this, view));
+        mPresenter.onAttach(this);
+        mSentencesAdapter.setCallback(this);
+
         return view;
     }
 

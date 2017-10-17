@@ -17,6 +17,8 @@ package com.mindorks.framework.mvp.di.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.mindorks.framework.mvp.BuildConfig;
 import com.mindorks.framework.mvp.R;
@@ -32,36 +34,32 @@ import com.mindorks.framework.mvp.di.ApiInfo;
 import com.mindorks.framework.mvp.di.ApplicationContext;
 import com.mindorks.framework.mvp.di.DatabaseInfo;
 import com.mindorks.framework.mvp.di.PreferenceInfo;
+import com.mindorks.framework.mvp.ui.login.LoginActivityComponent;
+import com.mindorks.framework.mvp.ui.main.MainActivityComponent;
+import com.mindorks.framework.mvp.ui.splash.SplashActivityComponent;
 import com.mindorks.framework.mvp.utils.AppConstants;
+import com.mindorks.framework.mvp.utils.rx.AppSchedulerProvider;
+import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.AndroidInjectionModule;
+import io.reactivex.disposables.CompositeDisposable;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by n1rocketdev on 27/01/17.
  */
 
-@Module
-public class ApplicationModule {
-
-    private final Application mApplication;
-
-    public ApplicationModule(Application application) {
-        mApplication = application;
-    }
+@Module(includes = AndroidInjectionModule.class)
+public class AppModule {
 
     @Provides
     @ApplicationContext
-    Context provideContext() {
-        return mApplication;
-    }
-
-    @Provides
-    Application provideApplication() {
-        return mApplication;
+    Context provideContext(Application application) {
+        return application;
     }
 
     @Provides
@@ -118,5 +116,20 @@ public class ApplicationModule {
     @Singleton
     DaoSession provideDaoSession(DbOpenHelper dbOpenHelper) {
         return new DaoMaster(dbOpenHelper.getWritableDb()).newSession();
+    }
+
+    @Provides
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
+    }
+
+    @Provides
+    SchedulerProvider provideSchedulerProvider() {
+        return new AppSchedulerProvider();
+    }
+
+    @Provides
+    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
+        return new LinearLayoutManager(activity);
     }
 }

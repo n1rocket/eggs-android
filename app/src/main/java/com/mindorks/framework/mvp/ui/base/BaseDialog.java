@@ -32,8 +32,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
-
 import butterknife.Unbinder;
 
 /**
@@ -127,13 +125,6 @@ public abstract class BaseDialog extends DialogFragment implements DialogMvpView
 
     public BaseActivity getBaseActivity() {
         return mActivity;
-    }
-
-    public ActivityComponent getActivityComponent() {
-        if (mActivity != null) {
-            return mActivity.getActivityComponent();
-        }
-        return null;
     }
 
     public void setUnBinder(Unbinder unBinder) {

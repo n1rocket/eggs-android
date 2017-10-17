@@ -15,17 +15,18 @@
 
 package com.mindorks.framework.mvp;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor.Level;
-import com.mindorks.framework.mvp.di.component.ApplicationComponent;
-import com.mindorks.framework.mvp.di.component.DaggerApplicationComponent;
-import com.mindorks.framework.mvp.di.module.ApplicationModule;
+import com.mindorks.framework.mvp.di.component.AppComponent;
 import com.mindorks.framework.mvp.utils.AppLogger;
 
 import javax.inject.Inject;
 
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -33,21 +34,24 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class MvpApp extends Application {
+public class MvpApp extends Application implements HasActivityInjector {
 
     @Inject
     CalligraphyConfig mCalligraphyConfig;
 
-    private ApplicationComponent mApplicationComponent;
+    @Inject
+    DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
+    private AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        mApplicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this)).build();
-
-        mApplicationComponent.inject(this);
+        mAppComponent = DaggerAppComponent
+                .builder()
+                .application(this)
+                .build()
+                .inject(this);
 
         AppLogger.init();
 
@@ -59,13 +63,16 @@ public class MvpApp extends Application {
         CalligraphyConfig.initDefault(mCalligraphyConfig);
     }
 
-    public ApplicationComponent getComponent() {
-        return mApplicationComponent;
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 
+    public void setAppComponent(AppComponent appComponent) {
+        this.mAppComponent = appComponent;
+    }
 
-    // Needed to replace the component with a test specific one
-    public void setComponent(ApplicationComponent applicationComponent) {
-        mApplicationComponent = applicationComponent;
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+        return activityDispatchingAndroidInjector;
     }
 }

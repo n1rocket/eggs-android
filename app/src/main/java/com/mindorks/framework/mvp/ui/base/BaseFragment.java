@@ -23,7 +23,6 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
 import com.mindorks.framework.mvp.utils.CommonUtils;
 
 import butterknife.Unbinder;
@@ -127,13 +126,6 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         if (mActivity != null) {
             mActivity.openActivityOnTokenExpire();
         }
-    }
-
-    public ActivityComponent getActivityComponent() {
-        if (mActivity != null) {
-            return mActivity.getActivityComponent();
-        }
-        return null;
     }
 
     public BaseActivity getBaseActivity() {

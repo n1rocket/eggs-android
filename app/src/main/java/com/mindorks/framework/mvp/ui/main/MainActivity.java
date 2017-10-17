@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
@@ -32,17 +33,24 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by n1rocketdev on 25/05/17.
  */
 
-public class MainActivity extends BaseActivity implements MainMvpView {
+public class MainActivity extends BaseActivity implements MainMvpView, HasSupportFragmentInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
     @Inject
     MainMvpPresenter<MainMvpView, MainMvpInteractor> mPresenter;
 
-    @Inject
+    //@Inject
     MainPagerAdapter mPagerAdapter;
 
     @BindView(R.id.toolbar)
@@ -64,7 +72,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getActivityComponent().inject(this);
+        AndroidInjection.inject(this);
 
         setUnBinder(ButterKnife.bind(this));
 
@@ -83,6 +91,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             getSupportActionBar().setDisplayShowHomeEnabled(false);
         }
 
+        mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         mPagerAdapter.setCount(3);
 
         mViewPager.setAdapter(mPagerAdapter);
@@ -142,5 +151,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentDispatchingAndroidInjector;
     }
 }
