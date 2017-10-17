@@ -1,4 +1,4 @@
-package com.mindorks.framework.mvp.di;
+package com.mindorks.framework.mvp.di.builders;
 
 import com.mindorks.framework.mvp.ui.login.LoginActivity;
 import com.mindorks.framework.mvp.ui.login.LoginActivityModule;
