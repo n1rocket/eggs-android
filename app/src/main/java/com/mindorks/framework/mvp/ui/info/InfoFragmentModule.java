@@ -10,14 +10,15 @@ import dagger.Provides;
 @Module
 public class InfoFragmentModule {
 
+    //Info
     @Provides
-    InfoInteractor provideInfoMvpInteractor(InfoInteractor interactor) {
-        return interactor;
+    InfoMvpPresenter<InfoMvpView, InfoMvpInteractor> provideInfoPresenter(
+            InfoPresenter<InfoMvpView, InfoMvpInteractor> presenter) {
+        return presenter;
     }
 
     @Provides
-    InfoMvpPresenter<InfoMvpView, InfoMvpInteractor> provideInfoMvpPresenter(
-            InfoPresenter<InfoMvpView, InfoMvpInteractor> presenter) {
-        return presenter;
+    InfoMvpInteractor provideInfoMvpInteractor(InfoInteractor interactor) {
+        return interactor;
     }
 }

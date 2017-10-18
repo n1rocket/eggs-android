@@ -20,6 +20,7 @@ import android.app.Application;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor.Level;
+import com.mindorks.framework.mvp.di.builders.DaggerAndroidInjector;
 import com.mindorks.framework.mvp.di.component.AppComponent;
 import com.mindorks.framework.mvp.utils.AppLogger;
 
@@ -52,6 +53,8 @@ public class MvpApp extends Application implements HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this);
+
+        DaggerAndroidInjector.initialize(this);
 
         AppLogger.init();
 

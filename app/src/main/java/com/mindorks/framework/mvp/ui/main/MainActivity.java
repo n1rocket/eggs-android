@@ -72,8 +72,6 @@ public class MainActivity extends BaseActivity implements MainMvpView, HasSuppor
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AndroidInjection.inject(this);
-
         setUnBinder(ButterKnife.bind(this));
 
         mPresenter.onAttach(this);

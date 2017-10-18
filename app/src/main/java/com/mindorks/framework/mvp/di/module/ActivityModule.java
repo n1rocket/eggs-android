@@ -87,49 +87,10 @@ public class ActivityModule {
         return mActivity;
     }
 
-
-
-    //Profile
     @Provides
-    ProfileMvpPresenter<ProfileMvpView, ProfileMvpInteractor> provideProfilePresenter(
-            ProfilePresenter<ProfileMvpView, ProfileMvpInteractor> presenter) {
-        return presenter;
+    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
+        return new LinearLayoutManager(activity);
     }
 
-    @Provides
-    @PerActivity
-    ProfileMvpInteractor provideProfileMvpInteractor(ProfileInteractor interactor) {
-        return interactor;
-    }
 
-    //Info
-    @Provides
-    InfoMvpPresenter<InfoMvpView, InfoMvpInteractor> provideInfoPresenter(
-            InfoPresenter<InfoMvpView, InfoMvpInteractor> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    @PerActivity
-    InfoMvpInteractor provideInfoMvpInteractor(InfoInteractor interactor) {
-        return interactor;
-    }
-
-    //Sentences
-    @Provides
-    SentencesMvpPresenter<SentencesMvpView, SentencesMvpInteractor> provideSentencesMvpPresenter(
-            SentencesPresenter<SentencesMvpView, SentencesMvpInteractor> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    SentencesAdapter provideSentencesAdapter() {
-        return new SentencesAdapter(new ArrayList<BlogResponse.Blog>());
-    }
-
-    @Provides
-    @PerActivity
-    SentencesMvpInteractor provideSentencesMvpInteractor(SentencesInteractor interactor) {
-        return interactor;
-    }
 }
