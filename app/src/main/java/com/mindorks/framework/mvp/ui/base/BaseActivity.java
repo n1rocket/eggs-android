@@ -43,8 +43,6 @@ import javax.inject.Inject;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasFragmentInjector;
-import dagger.android.support.DaggerAppCompatActivity;
 import dagger.android.support.HasSupportFragmentInjector;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
