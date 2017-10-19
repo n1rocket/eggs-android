@@ -26,14 +26,18 @@ import com.mindorks.framework.mvp.di.builders.FragmentBuilder;
 import com.mindorks.framework.mvp.di.module.AppModule;
 import com.mindorks.framework.mvp.service.SyncService;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by n1rocketdev on 27/01/17.
  */
 
+@Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
         AppModule.class,
@@ -58,4 +62,6 @@ public interface AppComponent {
     ApiHelper apiHelper();
 
     DaoSession daoSession();
+
+    //CalligraphyConfig calligraphyDefaultConfig();
 }
