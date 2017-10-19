@@ -1,12 +1,5 @@
 package com.mindorks.framework.mvp.ui.splash;
 
-import com.mindorks.framework.mvp.di.PerActivity;
-import com.mindorks.framework.mvp.ui.main.MainInteractor;
-import com.mindorks.framework.mvp.ui.main.MainMvpInteractor;
-import com.mindorks.framework.mvp.ui.main.MainMvpPresenter;
-import com.mindorks.framework.mvp.ui.main.MainMvpView;
-import com.mindorks.framework.mvp.ui.main.MainPresenter;
-
 import dagger.Module;
 import dagger.Provides;
 

@@ -57,8 +57,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getActivityComponent().inject(this);
-
         setUnBinder(ButterKnife.bind(this));
 
         mPresenter.onAttach(LoginActivity.this);

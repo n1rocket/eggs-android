@@ -23,6 +23,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.mindorks.framework.mvp.di.DaggerInjectable;
 import com.mindorks.framework.mvp.utils.CommonUtils;
 
 import butterknife.Unbinder;
@@ -31,7 +32,7 @@ import butterknife.Unbinder;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public abstract class BaseFragment extends Fragment implements MvpView {
+public abstract class BaseFragment extends Fragment implements MvpView, DaggerInjectable {
 
     private BaseActivity mActivity;
     private Unbinder mUnBinder;

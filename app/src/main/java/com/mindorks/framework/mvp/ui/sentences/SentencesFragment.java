@@ -50,7 +50,7 @@ public class SentencesFragment extends BaseFragment implements
     @Inject
     SentencesAdapter mSentencesAdapter;
 
-    @Inject
+    //@Inject
     LinearLayoutManager mLayoutManager;
 
     @BindView(R.id.sentences_recycler_view)
@@ -78,6 +78,7 @@ public class SentencesFragment extends BaseFragment implements
 
     @Override
     protected void setUp(View view) {
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

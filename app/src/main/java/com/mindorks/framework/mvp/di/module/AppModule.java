@@ -128,8 +128,4 @@ public class AppModule {
         return new AppSchedulerProvider();
     }
 
-    @Provides
-    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
-        return new LinearLayoutManager(activity);
-    }
 }

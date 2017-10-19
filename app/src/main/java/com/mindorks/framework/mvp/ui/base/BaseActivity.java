@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,11 +33,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mindorks.framework.mvp.R;
+import com.mindorks.framework.mvp.di.DaggerInjectable;
 import com.mindorks.framework.mvp.ui.login.LoginActivity;
 import com.mindorks.framework.mvp.utils.CommonUtils;
 import com.mindorks.framework.mvp.utils.NetworkUtils;
 
+import javax.inject.Inject;
+
 import butterknife.Unbinder;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasFragmentInjector;
+import dagger.android.support.DaggerAppCompatActivity;
+import dagger.android.support.HasSupportFragmentInjector;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -44,7 +53,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 public abstract class BaseActivity extends AppCompatActivity
-        implements MvpView, BaseFragment.Callback {
+        implements MvpView, BaseFragment.Callback, HasSupportFragmentInjector, DaggerInjectable {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
     private ProgressDialog mProgressDialog;
 
@@ -168,4 +180,9 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     protected abstract void setUp();
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentDispatchingAndroidInjector;
+    }
 }

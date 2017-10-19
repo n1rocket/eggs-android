@@ -31,7 +31,6 @@ import javax.inject.Singleton;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by n1rocketdev on 27/01/17.

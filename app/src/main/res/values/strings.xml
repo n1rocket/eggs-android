@@ -59,7 +59,7 @@
     <string name="submit">Submit</string>
 
     <!--main-->
-    <string name="title">Where is your eggs?</string>
+    <string name="title">Eggs?</string>
 
     <!--empty state-->
     <string name="empty_screen">We do not have anything\nhere right now.</string>

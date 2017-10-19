@@ -87,10 +87,10 @@ public class ActivityModule {
         return mActivity;
     }
 
-    @Provides
-    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
-        return new LinearLayoutManager(activity);
-    }
+//    @Provides
+//    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
+//        return new LinearLayoutManager(activity);
+//    }
 
 
 }

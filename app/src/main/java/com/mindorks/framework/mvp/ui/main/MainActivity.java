@@ -42,10 +42,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  * Created by n1rocketdev on 25/05/17.
  */
 
-public class MainActivity extends BaseActivity implements MainMvpView, HasSupportFragmentInjector {
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Inject
     MainMvpPresenter<MainMvpView, MainMvpInteractor> mPresenter;
@@ -149,10 +146,5 @@ public class MainActivity extends BaseActivity implements MainMvpView, HasSuppor
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
-    }
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentDispatchingAndroidInjector;
     }
 }

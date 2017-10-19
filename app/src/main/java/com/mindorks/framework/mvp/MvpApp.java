@@ -22,6 +22,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor.Level;
 import com.mindorks.framework.mvp.di.builders.DaggerAndroidInjector;
 import com.mindorks.framework.mvp.di.component.AppComponent;
+import com.mindorks.framework.mvp.di.component.DaggerAppComponent;
 import com.mindorks.framework.mvp.utils.AppLogger;
 
 import javax.inject.Inject;
@@ -48,11 +49,7 @@ public class MvpApp extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
 
-        mAppComponent = DaggerAppComponent
-                .builder()
-                .application(this)
-                .build()
-                .inject(this);
+        createAppComponent();
 
         DaggerAndroidInjector.initialize(this);
 
@@ -64,6 +61,15 @@ public class MvpApp extends Application implements HasActivityInjector {
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
+    }
+
+    public void createAppComponent(){
+        mAppComponent = DaggerAppComponent
+                .builder()
+                .application(this)
+                .build();
+
+        mAppComponent.inject(this);
     }
 
     public AppComponent getAppComponent() {

@@ -8,7 +8,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
 import com.mindorks.framework.mvp.MvpApp;
-import com.mindorks.framework.mvp.di.module.ActivityModule;
+import com.mindorks.framework.mvp.di.DaggerInjectable;
+import com.mindorks.framework.mvp.di.component.DaggerAppComponent;
 
 import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
@@ -18,14 +19,15 @@ import dagger.android.support.AndroidSupportInjection;
  */
 
 public class DaggerAndroidInjector {
-    private DaggerAndroidInjector(){}
+    private DaggerAndroidInjector() {
+    }
 
-    public static void initialize(MvpApp expenseApplication) {
+    public static void initialize(MvpApp app) {
 
-        DaggerAppComponent.builder().application(expenseApplication)
-                .build().inject(expenseApplication);
+        DaggerAppComponent.builder().application(app)
+                .build().inject(app);
 
-        expenseApplication
+        app
                 .registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
                     @Override
                     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
