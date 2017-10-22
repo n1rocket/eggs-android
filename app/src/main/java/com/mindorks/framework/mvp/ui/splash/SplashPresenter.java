@@ -31,8 +31,8 @@ import io.reactivex.functions.Function;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class SplashPresenter<V extends SplashMvpView, I extends SplashMvpInteractor>
-        extends BasePresenter<V, I> implements SplashMvpPresenter<V, I> {
+public class SplashPresenter<V extends SplashContract.View, I extends SplashContract.Interactor>
+        extends BasePresenter<V, I> implements SplashContract.Presenter<V, I> {
 
     @Inject
     public SplashPresenter(I mvpInteractor,

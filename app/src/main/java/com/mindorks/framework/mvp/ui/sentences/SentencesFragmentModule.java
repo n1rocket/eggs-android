@@ -16,8 +16,8 @@ public class SentencesFragmentModule {
 
     //Sentences
     @Provides
-    SentencesMvpPresenter<SentencesMvpView, SentencesMvpInteractor> provideSentencesMvpPresenter(
-            SentencesPresenter<SentencesMvpView, SentencesMvpInteractor> presenter) {
+    SentencesContract.Presenter<SentencesContract.View, SentencesContract.Interactor> provideSentencesMvpPresenter(
+            SentencesPresenter<SentencesContract.View, SentencesContract.Interactor> presenter) {
         return presenter;
     }
 
@@ -27,7 +27,7 @@ public class SentencesFragmentModule {
     }
 
     @Provides
-    SentencesMvpInteractor provideSentencesMvpInteractor(SentencesInteractor interactor) {
+            SentencesContract.Interactor provideSentencesMvpInteractor(SentencesInteractor interactor) {
         return interactor;
     }
 }

@@ -12,13 +12,13 @@ public class SplashActivityModule {
 
     //Splash
     @Provides
-    SplashMvpPresenter<SplashMvpView, SplashMvpInteractor> provideSplashPresenter(
-            SplashPresenter<SplashMvpView, SplashMvpInteractor> presenter) {
+    SplashContract.Presenter<SplashContract.View, SplashContract.Interactor> provideSplashPresenter(
+            SplashPresenter<SplashContract.View, SplashContract.Interactor> presenter) {
         return presenter;
     }
 
     @Provides
-    SplashMvpInteractor provideSplashMvpInteractor(SplashInteractor interactor) {
+            SplashContract.Interactor provideSplashMvpInteractor(SplashInteractor interactor) {
         return interactor;
     }
 }

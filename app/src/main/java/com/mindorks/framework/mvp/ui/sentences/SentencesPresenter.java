@@ -30,9 +30,9 @@ import io.reactivex.functions.Consumer;
  * Created by n1rocketdev on 25/05/17.
  */
 
-public class SentencesPresenter<V extends SentencesMvpView,
-        I extends SentencesMvpInteractor> extends BasePresenter<V, I>
-        implements SentencesMvpPresenter<V, I> {
+public class SentencesPresenter<V extends SentencesContract.View,
+        I extends SentencesContract.Interactor> extends BasePresenter<V, I>
+        implements SentencesContract.Presenter<V, I> {
 
     @Inject
     public SentencesPresenter(I mvpInteractor,

@@ -46,7 +46,7 @@ import io.reactivex.functions.Function;
  */
 
 public class SplashInteractor extends BaseInteractor
-        implements SplashMvpInteractor {
+        implements SplashContract.Interactor {
 
     private Context mContext;
 

@@ -11,7 +11,7 @@ import com.mindorks.framework.mvp.ui.base.MvpView;
 public interface ProfileContract {
     interface Presenter<V extends MvpView,
             I extends MvpInteractor> extends MvpPresenter<V, I> {
-        void onSectionAClicked();
+        void onNewSentenceClicked();
     }
 
     interface View extends MvpView {

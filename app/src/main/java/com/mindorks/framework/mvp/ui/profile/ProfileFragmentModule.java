@@ -12,13 +12,13 @@ public class ProfileFragmentModule {
 
     //Profile
     @Provides
-    ProfileMvpPresenter<ProfileMvpView, ProfileMvpInteractor> provideProfilePresenter(
-            ProfilePresenter<ProfileMvpView, ProfileMvpInteractor> presenter) {
+    ProfileContract.Presenter<ProfileContract.View, ProfileContract.Interactor> provideProfilePresenter(
+            ProfilePresenter<ProfileContract.View, ProfileContract.Interactor> presenter) {
         return presenter;
     }
 
     @Provides
-    ProfileMvpInteractor provideProfileMvpInteractor(ProfileInteractor interactor) {
+    ProfileContract.Interactor provideProfileMvpInteractor(ProfileInteractor interactor) {
         return interactor;
     }
 }

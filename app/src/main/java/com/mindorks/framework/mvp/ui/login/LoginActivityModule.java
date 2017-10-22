@@ -12,13 +12,13 @@ public class LoginActivityModule {
 
     //Login
     @Provides
-    LoginMvpPresenter<LoginMvpView, LoginMvpInteractor> provideLoginPresenter(
-            LoginPresenter<LoginMvpView, LoginMvpInteractor> presenter) {
+    LoginContract.Presenter<LoginContract.View, LoginContract.Interactor> provideLoginPresenter(
+            LoginPresenter<LoginContract.View, LoginContract.Interactor> presenter) {
         return presenter;
     }
 
     @Provides
-    LoginMvpInteractor provideLoginMvpInteractor(LoginInteractor interactor) {
+            LoginContract.Interactor provideLoginMvpInteractor(LoginInteractor interactor) {
         return interactor;
     }
 

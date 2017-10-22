@@ -31,7 +31,7 @@ import io.reactivex.Observable;
  */
 
 public class LoginInteractor extends BaseInteractor
-        implements LoginMvpInteractor {
+        implements LoginContract.Interactor {
 
     private UserRepository mUserRepository;
 

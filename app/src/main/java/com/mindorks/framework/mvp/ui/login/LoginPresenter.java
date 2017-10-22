@@ -33,8 +33,8 @@ import io.reactivex.functions.Consumer;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class LoginPresenter<V extends LoginMvpView, I extends LoginMvpInteractor>
-        extends BasePresenter<V, I> implements LoginMvpPresenter<V, I> {
+public class LoginPresenter<V extends LoginContract.View, I extends LoginContract.Interactor>
+        extends BasePresenter<V, I> implements LoginContract.Presenter<V, I> {
 
     private static final String TAG = "LoginPresenter";
 

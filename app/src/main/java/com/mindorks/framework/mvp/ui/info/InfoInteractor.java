@@ -25,7 +25,7 @@ import javax.inject.Inject;
  * Created by n1rocketdev on 20/07/17.
  */
 
-public class InfoInteractor extends BaseInteractor implements InfoMvpInteractor {
+public class InfoInteractor extends BaseInteractor implements InfoContract.Interactor {
 
     @Inject
     public InfoInteractor(PreferencesHelper preferencesHelper,

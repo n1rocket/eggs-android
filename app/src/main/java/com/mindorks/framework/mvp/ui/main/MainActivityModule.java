@@ -16,13 +16,13 @@ public class MainActivityModule {
 
     //Main
     @Provides
-    MainMvpInteractor provideMainMvpInteractor(MainInteractor interactor) {
+    MainContract.Interactor provideMainMvpInteractor(MainInteractor interactor) {
         return interactor;
     }
 
     @Provides
-    MainMvpPresenter<MainMvpView, MainMvpInteractor> provideMainPresenter(
-            MainPresenter<MainMvpView, MainMvpInteractor> presenter) {
+    MainContract.Presenter<MainContract.View, MainContract.Interactor> provideMainPresenter(
+            MainPresenter<MainContract.View, MainContract.Interactor> presenter) {
         return presenter;
     }
 

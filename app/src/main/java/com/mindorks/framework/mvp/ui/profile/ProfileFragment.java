@@ -76,9 +76,9 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
         super.onDestroyView();
     }
 
-    @OnClick(R.id.section_a)
-    void onSectionAClick(View v) {
-        mPresenter.onSectionAClicked();
+    @OnClick(R.id.action_new_sentence)
+    void onNewSentenceClicked(View v) {
+        mPresenter.onNewSentenceClicked();
     }
 
 }

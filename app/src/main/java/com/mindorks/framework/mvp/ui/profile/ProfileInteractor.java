@@ -25,7 +25,7 @@ import javax.inject.Inject;
  * Created by n1rocketdev on 20/07/17.
  */
 
-public class ProfileInteractor extends BaseInteractor implements ProfileMvpInteractor {
+public class ProfileInteractor extends BaseInteractor implements ProfileContract.Interactor {
 
     @Inject
     public ProfileInteractor(PreferencesHelper preferencesHelper,

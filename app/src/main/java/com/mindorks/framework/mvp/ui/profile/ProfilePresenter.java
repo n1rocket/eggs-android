@@ -27,9 +27,9 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class ProfilePresenter<V extends ProfileMvpView,
-        I extends ProfileMvpInteractor> extends BasePresenter<V, I>
-        implements ProfileMvpPresenter<V, I> {
+public class ProfilePresenter<V extends ProfileContract.View,
+        I extends ProfileContract.Interactor> extends BasePresenter<V, I>
+        implements ProfileContract.Presenter<V, I> {
 
     @Inject
     public ProfilePresenter(I mvpInteractor,
@@ -39,16 +39,7 @@ public class ProfilePresenter<V extends ProfileMvpView,
     }
 
     @Override
-    public void onSectionAClicked() {
-        //getMvpView().openMainActivity();
-        getMvpView().showMessage("onSectionAClicked");
-        AppLogger.d("-----> onSectionAClicked");
-    }
-
-    @Override
-    public void onSectionBClicked() {
-        getMvpView().showMessage("onSectionBClicked");
-        AppLogger.d("-----> onSectionBClicked");
-
+    public void onNewSentenceClicked() {
+        getMvpView().showMessage("onNewSentenceClicked");
     }
 }

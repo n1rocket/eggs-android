@@ -12,13 +12,13 @@ public class InfoFragmentModule {
 
     //Info
     @Provides
-    InfoMvpPresenter<InfoMvpView, InfoMvpInteractor> provideInfoPresenter(
-            InfoPresenter<InfoMvpView, InfoMvpInteractor> presenter) {
+    InfoContract.Presenter<InfoContract.View, InfoContract.Interactor> provideInfoPresenter(
+            InfoPresenter<InfoContract.View, InfoContract.Interactor> presenter) {
         return presenter;
     }
 
     @Provides
-    InfoMvpInteractor provideInfoMvpInteractor(InfoInteractor interactor) {
+    InfoContract.Interactor provideInfoMvpInteractor(InfoInteractor interactor) {
         return interactor;
     }
 }

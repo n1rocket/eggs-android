@@ -27,9 +27,9 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class InfoPresenter<V extends InfoMvpView,
-        I extends InfoMvpInteractor> extends BasePresenter<V, I>
-        implements InfoMvpPresenter<V, I> {
+public class InfoPresenter<V extends InfoContract.View,
+        I extends InfoContract.Interactor> extends BasePresenter<V, I>
+        implements InfoContract.Presenter<V, I> {
 
     @Inject
     public InfoPresenter(I mvpInteractor,
@@ -42,11 +42,5 @@ public class InfoPresenter<V extends InfoMvpView,
     public void onSectionAClicked() {
         //getMvpView().openMainActivity();
         AppLogger.d("-----> onSectionAClicked");
-    }
-
-    @Override
-    public void onSectionBClicked() {
-        AppLogger.d("-----> onSectionBClicked");
-
     }
 }

@@ -29,7 +29,7 @@ import io.reactivex.Observable;
  */
 
 public class SentencesInteractor extends BaseInteractor
-        implements SentencesMvpInteractor {
+        implements SentencesContract.Interactor {
 
     @Inject
     public SentencesInteractor(PreferencesHelper preferencesHelper,
