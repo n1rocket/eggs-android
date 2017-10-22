@@ -19,7 +19,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.mindorks.framework.mvp.ui.info.InfoFragment;
 import com.mindorks.framework.mvp.ui.profile.ProfileFragment;
 import com.mindorks.framework.mvp.ui.sentences.SentencesFragment;
 
@@ -44,8 +43,6 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
                 return SentencesFragment.newInstance();
             case 1:
                 return ProfileFragment.newInstance();
-            case 2:
-                return InfoFragment.newInstance();
             default:
                 return null;
         }

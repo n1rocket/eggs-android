@@ -82,13 +82,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
 
         mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
-        mPagerAdapter.setCount(3);
+        mPagerAdapter.setCount(2);
 
         mViewPager.setAdapter(mPagerAdapter);
 
         mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.sentences)));
         mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.profile)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.info)));
 
         mViewPager.setOffscreenPageLimit(mTabLayout.getTabCount());
 

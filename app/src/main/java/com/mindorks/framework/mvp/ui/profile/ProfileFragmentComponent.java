@@ -1,8 +1,5 @@
 package com.mindorks.framework.mvp.ui.profile;
 
-import com.mindorks.framework.mvp.ui.info.InfoFragment;
-import com.mindorks.framework.mvp.ui.info.InfoFragmentModule;
-
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 
