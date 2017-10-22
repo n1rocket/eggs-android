@@ -29,7 +29,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class MainPresenter<V extends MvpView, I extends MvpInteractor>
-        extends BasePresenter<V, I> implements MainMvpPresenter<V, I> {
+        extends BasePresenter<V, I> implements MainContract.Presenter<V, I> {
 
     private static final String TAG = "MainPresenter";
 

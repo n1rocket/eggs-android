@@ -36,10 +36,10 @@ import butterknife.OnClick;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class LoginActivity extends BaseActivity implements LoginMvpView {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Inject
-    LoginMvpPresenter<LoginMvpView, LoginMvpInteractor> mPresenter;
+    LoginContract.Presenter<LoginContract.View, LoginContract.Interactor> mPresenter;
 
     @BindView(R.id.et_email)
     EditText mEmailEditText;

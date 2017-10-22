@@ -40,12 +40,12 @@ import butterknife.ButterKnife;
  */
 
 public class SentencesFragment extends BaseFragment implements
-        SentencesMvpView, SentencesAdapter.Callback {
+        SentencesContract.View, SentencesAdapter.Callback {
 
-    private static final String TAG = "SentencesFragment";
+    private final String TAG = this.getClass().getSimpleName();
 
     @Inject
-    SentencesMvpPresenter<SentencesMvpView, SentencesMvpInteractor> mPresenter;
+    SentencesContract.Presenter<SentencesContract.View, SentencesContract.Interactor> mPresenter;
 
     @Inject
     SentencesAdapter mSentencesAdapter;

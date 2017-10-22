@@ -34,12 +34,12 @@ import butterknife.OnClick;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class ProfileFragment extends BaseFragment implements ProfileMvpView {
+public class ProfileFragment extends BaseFragment implements ProfileContract.View {
 
     public static final String TAG = "ProfileFragment";
 
     @Inject
-    ProfileMvpPresenter<ProfileMvpView, ProfileMvpInteractor> mPresenter;
+    ProfileContract.Presenter<ProfileContract.View, ProfileContract.Interactor> mPresenter;
 
     public static ProfileFragment newInstance() {
         Bundle args = new Bundle();
@@ -81,8 +81,4 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
         mPresenter.onSectionAClicked();
     }
 
-    @OnClick(R.id.section_b)
-    void onSectionBClick(View v) {
-        mPresenter.onSectionBClicked();
-    }
 }

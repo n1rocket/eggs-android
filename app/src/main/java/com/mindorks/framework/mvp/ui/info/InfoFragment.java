@@ -34,12 +34,12 @@ import butterknife.OnClick;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class InfoFragment extends BaseFragment implements InfoMvpView {
+public class InfoFragment extends BaseFragment implements InfoContract.View {
 
     public static final String TAG = "InfoFragment";
 
     @Inject
-    InfoMvpPresenter<InfoMvpView, InfoMvpInteractor> mPresenter;
+    InfoContract.Presenter<InfoContract.View, InfoContract.Interactor> mPresenter;
 
     public static InfoFragment newInstance() {
         Bundle args = new Bundle();
@@ -81,8 +81,4 @@ public class InfoFragment extends BaseFragment implements InfoMvpView {
         mPresenter.onSectionAClicked();
     }
 
-    @OnClick(R.id.section_b)
-    void onSectionBClick(View v) {
-        mPresenter.onSectionBClicked();
-    }
 }

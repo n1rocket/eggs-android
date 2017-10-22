@@ -25,7 +25,7 @@ import javax.inject.Inject;
  * Created by n1rocketdev on 20/07/17.
  */
 
-public class MainInteractor extends BaseInteractor implements MainMvpInteractor {
+public class MainInteractor extends BaseInteractor implements MainContract.Interactor {
 
     @Inject
     public MainInteractor(PreferencesHelper preferencesHelper,

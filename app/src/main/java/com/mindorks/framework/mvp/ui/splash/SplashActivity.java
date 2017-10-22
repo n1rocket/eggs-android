@@ -33,10 +33,10 @@ import butterknife.ButterKnife;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class SplashActivity extends BaseActivity implements SplashMvpView {
+public class SplashActivity extends BaseActivity implements SplashContract.View{
 
     @Inject
-    SplashMvpPresenter<SplashMvpView, SplashMvpInteractor> mPresenter;
+    SplashContract.Presenter<SplashContract.View, SplashContract.Interactor> mPresenter;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
