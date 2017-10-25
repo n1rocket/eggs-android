@@ -15,12 +15,11 @@
 
 package com.mindorks.framework.mvp.data.network;
 
+import com.mindorks.framework.mvp.data.network.api.BlogApi;
 import com.mindorks.framework.mvp.data.network.model.BlogResponse;
 import com.mindorks.framework.mvp.data.network.model.LoginRequest;
 import com.mindorks.framework.mvp.data.network.model.LoginResponse;
 import com.mindorks.framework.mvp.data.network.model.LogoutResponse;
-import com.mindorks.framework.mvp.data.network.model.OpenSourceResponse;
-import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -33,7 +32,48 @@ import io.reactivex.Observable;
 
 @Singleton
 public class AppApiHelper implements ApiHelper {
+    private ApiHeader mApiHeader;
 
+    @Inject
+    public BlogApi blogApi;
+
+    @Inject
+    public AppApiHelper(ApiHeader apiHeader) {
+        mApiHeader = apiHeader;
+    }
+
+    @Override
+    public ApiHeader getApiHeader() {
+        return mApiHeader;
+    }
+
+    @Override
+    public Observable<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request) {
+        return null;
+    }
+
+    @Override
+    public Observable<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request) {
+        return null;
+    }
+
+    @Override
+    public Observable<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request) {
+        return null;
+    }
+
+    @Override
+    public Observable<LogoutResponse> doLogoutApiCall() {
+        return null;
+    }
+
+    @Override
+    public Observable<BlogResponse> getBlogApiCall() {
+        return blogApi.loadBlogList();
+    }
+
+
+    /*
     private ApiHeader mApiHeader;
 
     @Inject
@@ -86,18 +126,14 @@ public class AppApiHelper implements ApiHelper {
 
     @Override
     public Observable<BlogResponse> getBlogApiCall() {
+
+
+
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_BLOG)
                 .addHeaders(mApiHeader.getProtectedApiHeader())
                 .build()
                 .getObjectObservable(BlogResponse.class);
     }
-
-    @Override
-    public Observable<OpenSourceResponse> getOpenSourceApiCall() {
-        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_OPEN_SOURCE)
-                .addHeaders(mApiHeader.getProtectedApiHeader())
-                .build()
-                .getObjectObservable(OpenSourceResponse.class);
-    }
+*/
 }
 

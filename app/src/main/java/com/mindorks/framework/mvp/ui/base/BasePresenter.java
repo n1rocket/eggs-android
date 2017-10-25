@@ -21,12 +21,12 @@ package com.mindorks.framework.mvp.ui.base;
 
 import android.util.Log;
 
-import com.androidnetworking.common.ANConstants;
-import com.androidnetworking.error.ANError;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.mindorks.framework.mvp.R;
+import com.mindorks.framework.mvp.data.network.model.ANConstants;
+import com.mindorks.framework.mvp.data.network.model.ANError;
 import com.mindorks.framework.mvp.data.network.model.ApiError;
 import com.mindorks.framework.mvp.utils.AppConstants;
 import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;

@@ -18,17 +18,18 @@ package com.mindorks.framework.mvp;
 import android.app.Activity;
 import android.app.Application;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.interceptors.HttpLoggingInterceptor.Level;
+import com.facebook.stetho.Stetho;
 import com.mindorks.framework.mvp.di.builders.DaggerAndroidInjector;
 import com.mindorks.framework.mvp.di.component.AppComponent;
 import com.mindorks.framework.mvp.di.component.DaggerAppComponent;
 import com.mindorks.framework.mvp.utils.AppLogger;
+import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -55,15 +56,19 @@ public class MvpApp extends Application implements HasActivityInjector {
 
         AppLogger.init();
 
-        AndroidNetworking.initialize(getApplicationContext());
         if (BuildConfig.DEBUG) {
-            AndroidNetworking.enableLogging(Level.BODY);
+            Timber.plant(new Timber.DebugTree());
+            Stetho.initializeWithDefaults(this);
+        }
+
+        if (!LeakCanary.isInAnalyzerProcess(this)) {
+            LeakCanary.install(this);
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
     }
 
-    public void createAppComponent(){
+    public void createAppComponent() {
         mAppComponent = DaggerAppComponent
                 .builder()
                 .application(this)

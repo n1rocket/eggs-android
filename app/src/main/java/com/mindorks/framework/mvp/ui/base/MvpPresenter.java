@@ -19,7 +19,8 @@ package com.mindorks.framework.mvp.ui.base;
  * Created by n1rocketdev on 27/01/17.
  */
 
-import com.androidnetworking.error.ANError;
+
+import com.mindorks.framework.mvp.data.network.model.ANError;
 
 /**
  * Every presenter in the app must either implement this interface or extend BasePresenter

@@ -15,12 +15,10 @@
 
 package com.mindorks.framework.mvp.di.module;
 
-import android.app.Application;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 
 import com.mindorks.framework.mvp.BuildConfig;
+import com.mindorks.framework.mvp.MvpApp;
 import com.mindorks.framework.mvp.R;
 import com.mindorks.framework.mvp.data.db.DbOpenHelper;
 import com.mindorks.framework.mvp.data.db.model.DaoMaster;
@@ -34,19 +32,21 @@ import com.mindorks.framework.mvp.di.ApiInfo;
 import com.mindorks.framework.mvp.di.ApplicationContext;
 import com.mindorks.framework.mvp.di.DatabaseInfo;
 import com.mindorks.framework.mvp.di.PreferenceInfo;
-import com.mindorks.framework.mvp.ui.login.LoginActivityComponent;
-import com.mindorks.framework.mvp.ui.main.MainActivityComponent;
-import com.mindorks.framework.mvp.ui.splash.SplashActivityComponent;
 import com.mindorks.framework.mvp.utils.AppConstants;
+import com.mindorks.framework.mvp.utils.NetworkUtils;
 import com.mindorks.framework.mvp.utils.rx.AppSchedulerProvider;
 import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;
 
+import java.io.File;
+
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.AndroidInjectionModule;
 import io.reactivex.disposables.CompositeDisposable;
+import okhttp3.Cache;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -56,10 +56,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 @Module(includes = AndroidInjectionModule.class)
 public class AppModule {
 
+    private static final String HTTP_CACHE_PATH = "http-cache";
+
     @Provides
     @ApplicationContext
-    Context provideContext(Application application) {
-        return application;
+    Context provideContext(MvpApp application) {
+        return application.getApplicationContext();
     }
 
     @Provides
@@ -126,6 +128,54 @@ public class AppModule {
     @Provides
     SchedulerProvider provideSchedulerProvider() {
         return new AppSchedulerProvider();
+    }
+
+    @Provides
+    @Singleton
+    @Named("isDebug")
+    boolean provideIsDebug() {
+        return BuildConfig.DEBUG;
+    }
+
+    @Provides
+    @Singleton
+    @Named("isConnected")
+    boolean provideIsConnected(@ApplicationContext Context context) {
+        return NetworkUtils.isNetworkConnected(context);
+    }
+
+    @Provides
+    @Singleton
+    @Named("networkTimeoutInSeconds")
+    int provideNetworkTimeoutInSeconds() {
+        return AppConstants.NETWORK_CONNECTION_TIMEOUT;
+    }
+
+    @Provides
+    @Singleton
+    @Named("cacheDir")
+    File provideCacheDir(@ApplicationContext Context context) {
+        return context.getCacheDir();
+    }
+
+    @Provides
+    @Singleton
+    public Cache provideCache(@Named("cacheDir") File cacheDir, @Named("cacheSize") long cacheSize) {
+        Cache cache = null;
+
+        try {
+            cache = new Cache(new File(cacheDir.getPath(), HTTP_CACHE_PATH), cacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return cache;
+    }
+    @Provides
+    @Singleton
+    @Named("cacheSize")
+    long provideCacheSize() {
+        return AppConstants.CACHE_SIZE;
     }
 
 }

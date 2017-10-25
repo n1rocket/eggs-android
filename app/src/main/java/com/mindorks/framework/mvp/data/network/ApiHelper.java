@@ -44,5 +44,4 @@ public interface ApiHelper {
 
     Observable<BlogResponse> getBlogApiCall();
 
-    Observable<OpenSourceResponse> getOpenSourceApiCall();
 }

@@ -15,7 +15,7 @@
 
 package com.mindorks.framework.mvp.ui.sentences;
 
-import com.androidnetworking.error.ANError;
+import com.mindorks.framework.mvp.data.network.model.ANError;
 import com.mindorks.framework.mvp.data.network.model.BlogResponse;
 import com.mindorks.framework.mvp.ui.base.BasePresenter;
 import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;

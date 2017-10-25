@@ -20,6 +20,8 @@ import android.app.Application;
 import com.mindorks.framework.mvp.MvpApp;
 import com.mindorks.framework.mvp.data.db.model.DaoSession;
 import com.mindorks.framework.mvp.data.network.ApiHelper;
+import com.mindorks.framework.mvp.data.network.setup.ApiModule;
+import com.mindorks.framework.mvp.data.network.setup.ClientModule;
 import com.mindorks.framework.mvp.data.prefs.PreferencesHelper;
 import com.mindorks.framework.mvp.di.builders.ActivityBuilder;
 import com.mindorks.framework.mvp.di.builders.FragmentBuilder;
@@ -41,13 +43,15 @@ import dagger.android.AndroidInjectionModule;
         AndroidInjectionModule.class,
         AppModule.class,
         ActivityBuilder.class,
-        FragmentBuilder.class})
+        FragmentBuilder.class,
+        ApiModule.class,
+        ClientModule.class})
 public interface AppComponent {
 
     @Component.Builder
     interface Builder {
         @BindsInstance
-        Builder application(Application application);
+        Builder application(MvpApp application);
 
         AppComponent build();
     }
