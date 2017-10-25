@@ -16,7 +16,7 @@
 package com.mindorks.framework.mvp.ui.sentences;
 
 import com.mindorks.framework.mvp.data.network.ApiHelper;
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.data.prefs.PreferencesHelper;
 import com.mindorks.framework.mvp.ui.base.BaseInteractor;
 
@@ -39,8 +39,8 @@ public class SentencesInteractor extends BaseInteractor
     }
 
     @Override
-    public Observable<BlogResponse> getBlogApiCall() {
-        return getApiHelper().getBlogApiCall();
+    public Observable<SentenceResponse> getSentencesApiCall() {
+        return getApiHelper().getSentencesApiCall();
     }
 
 }

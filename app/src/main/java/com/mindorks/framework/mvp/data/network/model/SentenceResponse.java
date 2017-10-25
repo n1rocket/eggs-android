@@ -24,7 +24,7 @@ import java.util.List;
  * Created by n1rocketdev on 28/01/17.
  */
 
-public class BlogResponse {
+public class SentenceResponse {
 
     @Expose
     @SerializedName("status_code")
@@ -65,9 +65,9 @@ public class BlogResponse {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BlogResponse)) return false;
+        if (!(o instanceof SentenceResponse)) return false;
 
-        BlogResponse that = (BlogResponse) o;
+        SentenceResponse that = (SentenceResponse) o;
 
         if (!statusCode.equals(that.statusCode)) return false;
         if (!message.equals(that.message)) return false;

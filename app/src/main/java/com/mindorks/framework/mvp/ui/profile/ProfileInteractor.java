@@ -16,10 +16,13 @@
 package com.mindorks.framework.mvp.ui.profile;
 
 import com.mindorks.framework.mvp.data.network.ApiHelper;
+import com.mindorks.framework.mvp.data.network.model.ProfileResponse;
 import com.mindorks.framework.mvp.data.prefs.PreferencesHelper;
 import com.mindorks.framework.mvp.ui.base.BaseInteractor;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 /**
  * Created by n1rocketdev on 20/07/17.
@@ -32,5 +35,10 @@ public class ProfileInteractor extends BaseInteractor implements ProfileContract
                              ApiHelper apiHelper) {
 
         super(preferencesHelper, apiHelper);
+    }
+
+    @Override
+    public Observable<ProfileResponse> getProfileApiCall() {
+        return getApiHelper().getProfileApiCall();
     }
 }

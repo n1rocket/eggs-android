@@ -15,13 +15,18 @@
 
 package com.mindorks.framework.mvp.ui.profile;
 
+import com.mindorks.framework.mvp.data.network.model.ANError;
+import com.mindorks.framework.mvp.data.network.model.ProfileResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.ui.base.BasePresenter;
 import com.mindorks.framework.mvp.utils.AppLogger;
 import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by n1rocketdev on 27/01/17.
@@ -42,4 +47,42 @@ public class ProfilePresenter<V extends ProfileContract.View,
     public void onNewSentenceClicked() {
         getMvpView().showMessage("onNewSentenceClicked");
     }
+
+    @Override
+    public void onViewPrepared() {
+        getMvpView().showLoading();
+        getCompositeDisposable().add(getInteractor()
+                .getProfileApiCall()
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(new Consumer<ProfileResponse>() {
+                    @Override
+                    public void accept(@NonNull ProfileResponse profileResponse)
+                            throws Exception {
+                        if (profileResponse != null && profileResponse.getData() != null) {
+                            getMvpView().updateProfile(profileResponse.getData());
+                        }
+                        getMvpView().hideLoading();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable)
+                            throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
+
+                        // handle the error here
+                        if (throwable instanceof ANError) {
+                            ANError anError = (ANError) throwable;
+                            handleApiError(anError);
+                        }
+                    }
+                }));
+    }
+
+
+
 }

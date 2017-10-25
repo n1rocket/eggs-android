@@ -1,6 +1,6 @@
 package com.mindorks.framework.mvp.ui.sentences;
 
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class SentencesFragmentModule {
 
     @Provides
     SentencesAdapter provideSentencesAdapter() {
-        return new SentencesAdapter(new ArrayList<BlogResponse.Blog>());
+        return new SentencesAdapter(new ArrayList<SentenceResponse.Blog>());
     }
 
     @Provides

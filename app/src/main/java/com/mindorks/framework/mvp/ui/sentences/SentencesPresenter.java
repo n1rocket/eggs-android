@@ -16,7 +16,7 @@
 package com.mindorks.framework.mvp.ui.sentences;
 
 import com.mindorks.framework.mvp.data.network.model.ANError;
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.ui.base.BasePresenter;
 import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;
 
@@ -45,15 +45,15 @@ public class SentencesPresenter<V extends SentencesContract.View,
     public void onViewPrepared() {
         getMvpView().showLoading();
         getCompositeDisposable().add(getInteractor()
-                .getBlogApiCall()
+                .getSentencesApiCall()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<BlogResponse>() {
+                .subscribe(new Consumer<SentenceResponse>() {
                     @Override
-                    public void accept(@NonNull BlogResponse blogResponse)
+                    public void accept(@NonNull SentenceResponse sentenceResponse)
                             throws Exception {
-                        if (blogResponse != null && blogResponse.getData() != null) {
-                            getMvpView().updateBlog(blogResponse.getData());
+                        if (sentenceResponse != null && sentenceResponse.getData() != null) {
+                            getMvpView().updateSentences(sentenceResponse.getData());
                         }
                         getMvpView().hideLoading();
                     }

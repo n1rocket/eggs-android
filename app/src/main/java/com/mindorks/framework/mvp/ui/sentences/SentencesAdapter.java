@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mindorks.framework.mvp.R;
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.ui.base.BaseViewHolder;
 import com.mindorks.framework.mvp.utils.AppLogger;
 
@@ -47,9 +47,9 @@ public class SentencesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_NORMAL = 1;
 
     private Callback mCallback;
-    private List<BlogResponse.Blog> mBlogResponseList;
+    private List<SentenceResponse.Blog> mBlogResponseList;
 
-    public SentencesAdapter(List<BlogResponse.Blog> blogResponseList) {
+    public SentencesAdapter(List<SentenceResponse.Blog> blogResponseList) {
         mBlogResponseList = blogResponseList;
     }
 
@@ -94,7 +94,7 @@ public class SentencesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public void addItems(List<BlogResponse.Blog> blogList) {
+    public void addItems(List<SentenceResponse.Blog> blogList) {
         mBlogResponseList.addAll(blogList);
         notifyDataSetChanged();
     }
@@ -134,7 +134,7 @@ public class SentencesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
 
-            final BlogResponse.Blog blog = mBlogResponseList.get(position);
+            final SentenceResponse.Blog blog = mBlogResponseList.get(position);
 
             if (blog.getCoverImgUrl() != null) {
                 Glide.with(itemView.getContext())

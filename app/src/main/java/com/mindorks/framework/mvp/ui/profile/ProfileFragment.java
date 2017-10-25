@@ -20,12 +20,17 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mindorks.framework.mvp.R;
+import com.mindorks.framework.mvp.data.network.model.ProfileResponse;
 import com.mindorks.framework.mvp.ui.base.BaseFragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -40,6 +45,13 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
 
     @Inject
     ProfileContract.Presenter<ProfileContract.View, ProfileContract.Interactor> mPresenter;
+
+    @BindView(R.id.imgEdit)
+    ImageView imgEdit;
+    @BindView(R.id.title_text)
+    TextView titleText;
+    @BindView(R.id.action_text)
+    TextView actionText;
 
     public static ProfileFragment newInstance() {
         Bundle args = new Bundle();
@@ -62,12 +74,7 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
 
     @Override
     protected void setUp(View view) {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        mPresenter.onViewPrepared();
     }
 
     @Override
@@ -81,4 +88,16 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
         mPresenter.onNewSentenceClicked();
     }
 
+    @Override
+    public void updateProfile(ProfileResponse.Profile profile) {
+        Glide.with(this)
+                .load(profile.getCoverImgUrl())
+                .asBitmap()
+                .centerCrop()
+                .into(imgEdit);
+
+        titleText.setText(profile.getTitle());
+        actionText.setText(profile.getDescription());
+
+    }
 }

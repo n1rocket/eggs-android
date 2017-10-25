@@ -1,6 +1,7 @@
 package com.mindorks.framework.mvp.data.network.setup;
 
-import com.mindorks.framework.mvp.data.network.api.BlogApi;
+import com.mindorks.framework.mvp.data.network.api.ProfileApi;
+import com.mindorks.framework.mvp.data.network.api.SentencesApi;
 
 import javax.inject.Singleton;
 
@@ -16,8 +17,13 @@ import retrofit2.Retrofit;
 public class ApiModule {
     @Provides
     @Singleton
-    public BlogApi provideBlogApiService(Retrofit retrofit) {
-        return retrofit.create(BlogApi.class);
+    public SentencesApi provideSentencesApiService(Retrofit retrofit) {
+        return retrofit.create(SentencesApi.class);
+    }
+    @Provides
+    @Singleton
+    public ProfileApi provideProfileApiService(Retrofit retrofit) {
+        return retrofit.create(ProfileApi.class);
     }
 
 }

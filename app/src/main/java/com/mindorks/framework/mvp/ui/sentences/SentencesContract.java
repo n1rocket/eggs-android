@@ -1,6 +1,6 @@
 package com.mindorks.framework.mvp.ui.sentences;
 
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.ui.base.MvpInteractor;
 import com.mindorks.framework.mvp.ui.base.MvpPresenter;
 import com.mindorks.framework.mvp.ui.base.MvpView;
@@ -20,11 +20,11 @@ public interface SentencesContract {
     }
 
     interface View extends MvpView {
-        void updateBlog(List<BlogResponse.Blog> blogList);
+        void updateSentences(List<SentenceResponse.Blog> blogList);
     }
 
     interface Interactor extends MvpInteractor {
-        Observable<BlogResponse> getBlogApiCall();
+        Observable<SentenceResponse> getSentencesApiCall();
     }
 
 }

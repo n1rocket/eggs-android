@@ -15,8 +15,10 @@
 
 package com.mindorks.framework.mvp.data.network;
 
-import com.mindorks.framework.mvp.data.network.api.BlogApi;
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.api.ProfileApi;
+import com.mindorks.framework.mvp.data.network.api.SentencesApi;
+import com.mindorks.framework.mvp.data.network.model.ProfileResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.data.network.model.LoginRequest;
 import com.mindorks.framework.mvp.data.network.model.LoginResponse;
 import com.mindorks.framework.mvp.data.network.model.LogoutResponse;
@@ -35,7 +37,10 @@ public class AppApiHelper implements ApiHelper {
     private ApiHeader mApiHeader;
 
     @Inject
-    public BlogApi blogApi;
+    public SentencesApi sentencesApi;
+
+    @Inject
+    public ProfileApi profileApi;
 
     @Inject
     public AppApiHelper(ApiHeader apiHeader) {
@@ -68,8 +73,13 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Observable<BlogResponse> getBlogApiCall() {
-        return blogApi.loadBlogList();
+    public Observable<SentenceResponse> getSentencesApiCall() {
+        return sentencesApi.loadSentences();
+    }
+
+    @Override
+    public Observable<ProfileResponse> getProfileApiCall() {
+        return profileApi.loadProfile();
     }
 
 
@@ -125,14 +135,14 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Observable<BlogResponse> getBlogApiCall() {
+    public Observable<SentenceResponse> getSentencesApiCall() {
 
 
 
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_BLOG)
                 .addHeaders(mApiHeader.getProtectedApiHeader())
                 .build()
-                .getObjectObservable(BlogResponse.class);
+                .getObjectObservable(SentenceResponse.class);
     }
 */
 }

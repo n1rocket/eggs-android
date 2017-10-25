@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mindorks.framework.mvp.R;
-import com.mindorks.framework.mvp.data.network.model.BlogResponse;
+import com.mindorks.framework.mvp.data.network.model.SentenceResponse;
 import com.mindorks.framework.mvp.ui.base.BaseFragment;
 
 import java.util.List;
@@ -93,7 +93,7 @@ public class SentencesFragment extends BaseFragment implements
     }
 
     @Override
-    public void updateBlog(List<BlogResponse.Blog> blogList) {
+    public void updateSentences(List<SentenceResponse.Blog> blogList) {
         mSentencesAdapter.addItems(blogList);
     }
 
