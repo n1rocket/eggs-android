@@ -15,6 +15,7 @@
 
 package com.mindorks.framework.mvp.data.network;
 
+import com.mindorks.framework.mvp.data.network.api.LoginApi;
 import com.mindorks.framework.mvp.data.network.api.ProfileApi;
 import com.mindorks.framework.mvp.data.network.api.SentencesApi;
 import com.mindorks.framework.mvp.data.network.model.ProfileResponse;
@@ -43,6 +44,9 @@ public class AppApiHelper implements ApiHelper {
     public ProfileApi profileApi;
 
     @Inject
+    public LoginApi loginApi;
+
+    @Inject
     public AppApiHelper(ApiHeader apiHeader) {
         mApiHeader = apiHeader;
     }
@@ -54,22 +58,22 @@ public class AppApiHelper implements ApiHelper {
 
     @Override
     public Observable<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request) {
-        return null;
+        return loginApi.loginGoogle();
     }
 
     @Override
     public Observable<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request) {
-        return null;
+        return loginApi.loginFacebook();
     }
 
     @Override
     public Observable<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request) {
-        return null;
+        return loginApi.loginServer();
     }
 
     @Override
     public Observable<LogoutResponse> doLogoutApiCall() {
-        return null;
+        return loginApi.logout();
     }
 
     @Override

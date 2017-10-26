@@ -1,5 +1,6 @@
 package com.mindorks.framework.mvp.data.network.setup;
 
+import com.mindorks.framework.mvp.data.network.api.LoginApi;
 import com.mindorks.framework.mvp.data.network.api.ProfileApi;
 import com.mindorks.framework.mvp.data.network.api.SentencesApi;
 
@@ -20,10 +21,17 @@ public class ApiModule {
     public SentencesApi provideSentencesApiService(Retrofit retrofit) {
         return retrofit.create(SentencesApi.class);
     }
+
     @Provides
     @Singleton
     public ProfileApi provideProfileApiService(Retrofit retrofit) {
         return retrofit.create(ProfileApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public LoginApi provideLoginApiService(Retrofit retrofit) {
+        return retrofit.create(LoginApi.class);
     }
 
 }
