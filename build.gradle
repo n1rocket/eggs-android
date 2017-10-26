@@ -74,6 +74,7 @@ ext {
     greenDaoVersion = '3.2.0'
 
     placeholderviewVersion = '0.6.1'
+    pagerBottomTabStrip = '2.2.5'
 
     //Debug
     debugDBVersion = '1.0.0'

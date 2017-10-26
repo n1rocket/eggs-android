@@ -111,6 +111,9 @@ dependencies {
     // swipe view
     compile "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"
 
+    //Bottom Bar Navigation
+    compile "me.majiajie:pager-bottom-tab-strip:$rootProject.pagerBottomTabStrip"
+
     // logger
     compile "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
