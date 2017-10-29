@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
@@ -26,7 +27,6 @@ import com.n1rocket.framework.mvp.R;
 import com.n1rocket.framework.mvp.ui.base.BaseActivity;
 import com.n1rocket.framework.mvp.ui.profile.ProfileFragment;
 import com.n1rocket.framework.mvp.ui.sentences.SentencesFragment;
-import com.roughike.bottombar.BottomBar;
 
 import javax.inject.Inject;
 
@@ -48,8 +48,41 @@ public class BottomActivity extends BaseActivity implements BottomContract.View 
     AppBarLayout appBarLayout;
     @BindView(R.id.container)
     FrameLayout container;
-    @BindView(R.id.bottomBar)
-    BottomBar bottomBar;
+    @BindView(R.id.navigation)
+    BottomNavigationView navigation;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+        switch (item.getItemId()) {
+            case R.id.navigation_sentences:
+                mPresenter.onTabSentencesBottom();
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, SentencesFragment.newInstance())
+                        .commit();
+                return true;
+            case R.id.navigation_profile:
+                mPresenter.onTabProfileBottom();
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, ProfileFragment.newInstance())
+                        .commit();
+                return true;
+        }
+        return false;
+    };
+
+    private BottomNavigationView.OnNavigationItemReselectedListener mOnNavigationItemReselectedListener
+            = item -> {
+        switch (item.getItemId()) {
+            case R.id.navigation_sentences:
+                mPresenter.onReTabSentencesBottom();
+            case R.id.navigation_profile:
+                mPresenter.onReTabProfileBottom();
+        }
+    };
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, BottomActivity.class);
@@ -78,33 +111,8 @@ public class BottomActivity extends BaseActivity implements BottomContract.View 
             getSupportActionBar().setDisplayShowHomeEnabled(false);
         }
 
-        bottomBar.setOnTabSelectListener(tabId -> {
-            if (tabId == R.id.tab_sentences) {
-                mPresenter.onTabSentencesBottom();
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.container, SentencesFragment.newInstance())
-                        .commit();
-
-            } else if (tabId == R.id.tab_profile) {
-                mPresenter.onTabProfileBottom();
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.container, ProfileFragment.newInstance())
-                        .commit();
-
-            }
-        });
-
-        bottomBar.setOnTabReselectListener(tabId -> {
-            if (tabId == R.id.tab_sentences) {
-                mPresenter.onReTabSentencesBottom();
-            } else if (tabId == R.id.tab_profile) {
-                mPresenter.onReTabProfileBottom();
-            }
-        });
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnNavigationItemReselectedListener(mOnNavigationItemReselectedListener);
     }
 
     @Override

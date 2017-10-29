@@ -18,6 +18,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url "https://jitpack.io" }
         maven {
             url 'https://maven.google.com/'
             name 'Google'
@@ -74,7 +75,6 @@ ext {
     greenDaoVersion = '3.2.0'
 
     placeholderviewVersion = '0.6.1'
-    bottombar = '2.3.1'
 
     //Debug
     debugDBVersion = '1.0.0'

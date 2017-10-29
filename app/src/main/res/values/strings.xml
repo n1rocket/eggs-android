@@ -69,6 +69,6 @@
     <!--tabs-->
     <string name="sentences">Sentences</string>
     <string name="profile">Profile</string>
-    <string name="info">Info</string>
+    <string name="title_activity_bottom_nav">BottomNavActivity</string>
 
 </resources>
