@@ -13,10 +13,11 @@
  * limitations under the License
  */
 
-package com.n1rocket.framework.mvp.ui.splash;
+package com.n1rocket.framework.mvp.ui.bottom;
 
 import com.n1rocket.framework.mvp.ui.base.BasePresenter;
-import com.n1rocket.framework.mvp.utils.AppConstants;
+import com.n1rocket.framework.mvp.ui.base.MvpInteractor;
+import com.n1rocket.framework.mvp.ui.base.MvpView;
 import com.n1rocket.framework.mvp.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
@@ -24,36 +25,34 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Created by n1rocketdev on 27/01/17.
+ * Created by n1rocketdev on 25/05/17.
  */
 
-public class SplashPresenter<V extends SplashContract.View, I extends SplashContract.Interactor>
-        extends BasePresenter<V, I> implements SplashContract.Presenter<V, I> {
+public class BottomPresenter<V extends MvpView, I extends MvpInteractor>
+        extends BasePresenter<V, I> implements BottomContract.Presenter<V, I> {
+
+    private static final String TAG = "BottomPresenter";
 
     @Inject
-    public SplashPresenter(I mvpInteractor,
+    public BottomPresenter(I mvpInteractor,
                            SchedulerProvider schedulerProvider,
                            CompositeDisposable compositeDisposable) {
         super(mvpInteractor, schedulerProvider, compositeDisposable);
     }
 
     @Override
-    public void onAttach(V mvpView) {
-        super.onAttach(mvpView);
-
-        getMvpView().startSyncService();
-
-        decideNextActivity();
-
+    public void onTabSentencesBottom() {
     }
 
-    private void decideNextActivity() {
-        if (getInteractor().getCurrentUserLoggedInMode()
-                == AppConstants.LoggedInMode.LOGGED_IN_MODE_LOGGED_OUT.getType()) {
-            getMvpView().openLoginActivity();
-        } else {
-            //getMvpView().openMainActivity();
-            getMvpView().openBottomActivity();
-        }
+    @Override
+    public void onReTabSentencesBottom() {
+    }
+
+    @Override
+    public void onTabProfileBottom() {
+    }
+
+    @Override
+    public void onReTabProfileBottom() {
     }
 }

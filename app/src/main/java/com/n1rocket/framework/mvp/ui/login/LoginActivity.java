@@ -23,6 +23,7 @@ import android.widget.EditText;
 
 import com.n1rocket.framework.mvp.R;
 import com.n1rocket.framework.mvp.ui.base.BaseActivity;
+import com.n1rocket.framework.mvp.ui.bottom.BottomActivity;
 import com.n1rocket.framework.mvp.ui.main.MainActivity;
 
 import javax.inject.Inject;
@@ -81,6 +82,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void openMainActivity() {
         Intent intent = MainActivity.getStartIntent(LoginActivity.this);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void openBottomActivity() {
+        Intent intent = BottomActivity.getStartIntent(LoginActivity.this);
         startActivity(intent);
         finish();
     }

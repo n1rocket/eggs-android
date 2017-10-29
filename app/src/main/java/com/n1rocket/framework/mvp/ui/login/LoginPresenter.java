@@ -82,7 +82,8 @@ public class LoginPresenter<V extends LoginContract.View, I extends LoginContrac
                         }
 
                         getMvpView().hideLoading();
-                        getMvpView().openMainActivity();
+                        //getMvpView().openMainActivity();
+                        getMvpView().openBottomActivity();
 
                     }
                 }, new Consumer<Throwable>() {
@@ -129,7 +130,8 @@ public class LoginPresenter<V extends LoginContract.View, I extends LoginContrac
                         }
 
                         getMvpView().hideLoading();
-                        getMvpView().openMainActivity();
+                        //getMvpView().openMainActivity();
+                        getMvpView().openBottomActivity();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -175,7 +177,8 @@ public class LoginPresenter<V extends LoginContract.View, I extends LoginContrac
                         }
 
                         getMvpView().hideLoading();
-                        getMvpView().openMainActivity();
+                        //getMvpView().openMainActivity();
+                        getMvpView().openBottomActivity();
                     }
                 }, new Consumer<Throwable>() {
                     @Override

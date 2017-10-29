@@ -1,5 +1,7 @@
 package com.n1rocket.framework.mvp.di.builders;
 
+import com.n1rocket.framework.mvp.ui.bottom.BottomActivity;
+import com.n1rocket.framework.mvp.ui.bottom.BottomActivityModule;
 import com.n1rocket.framework.mvp.ui.login.LoginActivity;
 import com.n1rocket.framework.mvp.ui.login.LoginActivityModule;
 import com.n1rocket.framework.mvp.ui.main.MainActivity;
@@ -25,5 +27,8 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = MainActivityModule.class)
     abstract MainActivity bindMainActivity();
+
+    @ContributesAndroidInjector(modules = BottomActivityModule.class)
+    abstract BottomActivity bindBottomActivity();
 
 }

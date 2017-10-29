@@ -24,6 +24,7 @@ public interface LoginContract {
 
     interface View extends MvpView {
         void openMainActivity();
+        void openBottomActivity();
 
     }
 

@@ -21,6 +21,7 @@ import android.os.Bundle;
 
 import com.n1rocket.framework.mvp.R;
 import com.n1rocket.framework.mvp.ui.base.BaseActivity;
+import com.n1rocket.framework.mvp.ui.bottom.BottomActivity;
 import com.n1rocket.framework.mvp.ui.login.LoginActivity;
 import com.n1rocket.framework.mvp.ui.main.MainActivity;
 
@@ -66,6 +67,13 @@ public class SplashActivity extends BaseActivity implements SplashContract.View{
     @Override
     public void openMainActivity() {
         Intent intent = MainActivity.getStartIntent(SplashActivity.this);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void openBottomActivity() {
+        Intent intent = BottomActivity.getStartIntent(SplashActivity.this);
         startActivity(intent);
         finish();
     }

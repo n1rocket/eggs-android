@@ -17,6 +17,7 @@ package com.n1rocket.framework.mvp;
 
 import android.app.Activity;
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
 import com.n1rocket.framework.mvp.BuildConfig;
@@ -38,7 +39,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by n1rocketdev on 27/01/17.
  */
 
-public class MvpApp extends Application implements HasActivityInjector {
+public class MvpApp extends MultiDexApplication implements HasActivityInjector {
 
     @Inject
     CalligraphyConfig mCalligraphyConfig;

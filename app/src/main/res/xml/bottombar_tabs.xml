@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_sentences"
+        icon="@drawable/ic_news_black_24dp"
+        title="Sentences" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_book_black_24dp"
+        title="Profile" />
+</tabs>

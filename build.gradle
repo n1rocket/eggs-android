@@ -50,12 +50,12 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 16
-    targetSdkVersion = 26
-    compileSdkVersion = 26
+    targetSdkVersion = 27
+    compileSdkVersion = 27
     buildToolsVersion = '26.0.1'
 
     // App dependencies
-    supportLibraryVersion = '26.1.0'
+    supportLibraryVersion = '27.0.0'
     constraintLayoutVersion = '1.0.2'
 
     calligraphyVersion = '2.2.0'
@@ -74,7 +74,7 @@ ext {
     greenDaoVersion = '3.2.0'
 
     placeholderviewVersion = '0.6.1'
-    pagerBottomTabStrip = '2.2.5'
+    bottombar = '2.3.1'
 
     //Debug
     debugDBVersion = '1.0.0'
